@@ -14,9 +14,7 @@ use App\Http\Controllers\SearchController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/question', function () {
-    return view('question');
-});
+
 
 
 Route::get('/', function () {
@@ -42,6 +40,6 @@ Route::post('/search', [SearchController::class, 'search'])->name('search');
 
 Route::get('/question', function () {
     return view('question');
-});
+})->name('question');
 
 Route::get('/response/{id}', [SearchController::class, 'response'])->name('response');
