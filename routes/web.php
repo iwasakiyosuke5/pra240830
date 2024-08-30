@@ -42,4 +42,8 @@ Route::get('/question', function () {
     return view('question');
 })->name('question');
 
+Route::get('/request', function () {
+    return view('request');
+})->name('request');
+
 Route::get('/response/{id}', [SearchController::class, 'response'])->name('response');

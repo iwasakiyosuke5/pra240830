@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ask a Question</title>
-    <a href="/" role="button">投稿ページへ</a>
+    <a href="{{ route('request') }}" role="button">投稿ページへ</a>
 </head>
 <body>
     <h1>Ask a Question</h1>
