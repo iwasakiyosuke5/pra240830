@@ -8,7 +8,7 @@
 
 </head>
 <body>
-    <h1 class="text-sky-400">PNG画像をアップロードしてください</h1>
+    <h1 class="text-sky-400 text-2xl">PNG画像をアップロードしてください</h1>
     <form action="{{ route('convert.png') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <input type="file" name="image_file" accept="image/png" required>
