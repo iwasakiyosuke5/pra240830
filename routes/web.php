@@ -14,6 +14,10 @@ use App\Http\Controllers\SearchController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/question', function () {
+    return view('question');
+});
+
 
 Route::get('/', function () {
     return view('request');

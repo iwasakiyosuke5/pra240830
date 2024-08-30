@@ -14,6 +14,6 @@
         <input type="file" name="image_file" accept="image/png" required>
         <button type="submit">テキストに変換</button>
     </form>
-    <a href="/question">AIに聞く</a>
+    <a href="{{ route('question') }}">AIに聞く</a>
 </body>
 </html>
