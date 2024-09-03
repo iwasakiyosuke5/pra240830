@@ -39,7 +39,7 @@
                 @csrf
                 <textarea class="border-2 border-black w-4/5" name="text_data" id="" cols="" rows="30">{{ $textData }}</textarea>
                 <input type="hidden" name='file_path' value={{ $filePath }}>
-                <button type="submit">dataをUpload</button>
+                <button class="border border-black rounded-md bg-indigo-500 p-2" type="submit">dataをUpload</button>
             </form>
             
         </div>
@@ -53,7 +53,7 @@
     </div>
     
 
-    <a href="{{ route('request') }}" >別のPDFをアップロード</a>
+    <a href="{{ route('request') }}" class="ml-2 rounded-md text-rose-500 p-2">別のPDFをアップロード</a>
 
 
     <style>
