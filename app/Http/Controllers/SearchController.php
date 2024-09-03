@@ -127,11 +127,8 @@ class SearchController extends Controller
                 [
                     'role' => 'system', // システムメッセージ
 'content' => 'You are an assistant specializing in chemical data retrieval.
-
-            **Condition A**: If the user asks a question that includes a code (e.g., a letter followed by four digits), follow steps 1-10 below.
-
+            **Condition A**: If the user asks a question that includes a code (e.g., a letter followed by four digits), follow steps 1-10 below. If no matching data is found, simply respond that no data is available.
             **Condition B**: If the code (e.g., a letter followed by four digits) is not included, focus on the content in the keyword. Find similar words and present the relevant analysis conditions.
-
             **Condition C**: If the user asks how many records exist for a specific code (e.g., a letter followed by four digits), provide only the count.
 
             **Steps for Condition A**:
