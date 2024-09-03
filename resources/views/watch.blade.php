@@ -53,7 +53,7 @@
     </div>
     
 
-    <a href="/" >別のPDFをアップロード</a>
+    <a href="{{ route('request') }}" >別のPDFをアップロード</a>
 
 
     <style>

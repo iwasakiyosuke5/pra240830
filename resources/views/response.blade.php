@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>Search Results</title>
-    <a href="{{ route('request') }}" role="button">投稿ページへ</a>
+    <a href="{{ route('question') }}" role="button">投稿ページへ</a>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Your Question</h5>
-                    <p class="card-text">{{ $question }}</p>
+                    <p class="card-text">{!! $question !!}</p>
                 </div>
             </div>
             <br>
@@ -24,6 +24,22 @@
                 <div class="card-body">
                     <h5 class="card-title">AI Response</h5>
                     <p class="card-text">{!! $aiResponse !!}</p>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Ask a Follow-up Question</h5>
+                    <form method="POST" action="{{ route('followup.question') }}">
+                        @csrf
+                        <div class="form-group">
+                            <label for="followupQuestion">Your Follow-up Question:</label>
+                            <textarea class="form-control" id="followupQuestion" name="followupQuestion" rows="3"></textarea>
+                        </div>
+                        <input type="hidden" name="previousQuestion" value="{{ $question }}">
+                        <input type="hidden" name="previousResponse" value="{{ $aiResponse }}">
+                        <button type="submit" class="btn btn-primary mt-3">Ask AI</button>
+                    </form>
                 </div>
             </div>
             <br>

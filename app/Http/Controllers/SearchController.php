@@ -6,6 +6,7 @@ use App\Models\Fragment;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+
 class SearchController extends Controller
 {
     private function extractKeywords($query)
@@ -57,9 +58,7 @@ class SearchController extends Controller
     
         // フィルタリングされた結果からコンテキストを作成（上位3つを使用）
         $context = implode("\n", array_map(function($result) {
-            // return $result['fragment']->content;
-            // return $result['fragment']->content . '\nFile_Path: ' . $result['fragment'];
-            return $result['fragment']->content . $result['fragment'];
+            return $result['fragment']->content . '\nFile_Path: ' . $result['fragment'];
         }, array_slice($filteredResults, 0, 5)));
     
         $aiResponse = $this->askAI($query, $context);
@@ -120,15 +119,34 @@ class SearchController extends Controller
     private function askAI($query, $context)
     {
         $apiKey = env('OPENAI_API_KEY'); // OpenAI APIキーを取得
-        $response = Http::withHeaders([ // OpenAI APIにリクエスト
-            'Authorization' => 'Bearer ' . $apiKey, // APIキーをヘッダーに追加
-        ])->post('https://api.openai.com/v1/chat/completions', [ // チャット補完APIにリクエスト
-            'model' => 'gpt-4o-mini',  // または 'gpt-4' など、使用するモデルを指定
+        $response = Http::withHeaders([ // APIキーなどをOpenAI APIにリクエスト
+            'Authorization' => 'Bearer ' . $apiKey, 
+        ])->post('https://api.openai.com/v1/chat/completions', [ 
+            'model' => 'gpt-4o-mini',  // モデルの指定
             'messages' => [
                 [
                     'role' => 'system', // システムメッセージ
-                    // 'content' => 'You are a helpful assistant.' // メッセージの内容
-                    'content' => 'You are an assistant to a chemist. If the query contains a code consisting of Roman letters followed by four digits, prioritize searching and responding based on the code or compound name. If multiple entries are found, focus on the measurements with the highest purity (highest area %). If the query lacks a code or compound name but includes molecular weight or functional groups, and asks for reference conditions (e.g., "Please provide reference conditions"), focus on the "keyword" field to find and present relevant data. Additionally, it would be helpful if you could organize the information into clear sections (such as Basic Information and Analysis Conditions) to enhance readability.'
+                    'content' => 'You are an assistant specializing in chemical data retrieval. When the user asks a question that includes a code (i.e., a letter followed by four digits), follow these instructions:
+
+                    1. Always match the code exactly to ensure only relevant data is considered.
+                    2. Evaluate all dates carefully, regardless of how they are labeled (e.g., "Measurement Date," "Measure Date," "Date," or other variations), and identify the most recent or relevant date based on the users request.
+                    3. If the user mentions "highest purity," "highest," "most," or similar phrases, evaluate all records related to the specified code and provide the one with the highest purity.
+                    4. If the user mentions "latest," "newest," "most recent," or similar phrases, evaluate all records and provide the one with the most recent date, regardless of how the date is labeled.
+                    5. If the user mentions a specific date or date range, filter the records accordingly and provide the relevant data, even if the date format differs.
+                    6. If the user asks for "oldest," provide the earliest record based on the date for the specified code.
+                    7. If the user asks for general information without specifying purity or date, provide the most recent data based on the date.
+                    8. Provide a brief summary including:
+                        - The date of the record.
+                        - The code itself.
+                        - The name of the column used in the analysis.
+                        - The purity of the sample, if relevant to the users request.
+                    9. Include up to three file paths related to the data (if available).
+                        - Display the URL of the first data record as "原本データ: url".
+                        - If there are additional URLs, display them as "otherdata: url".
+                    10. If no relevant data is found, let the user know in a friendly and understanding way that there is no data available for the specified code.
+                    "以上を箇条書きで回答してください"
+
+                    Please respond in a clear and concise manner, using natural and conversational language.'
 
                 ],
                 [
