@@ -59,7 +59,7 @@ class FollowUpController extends Controller
                 // ],
                 [
                     'role' => 'assistant',
-                    'content' => "$previousResponse"
+                    'content' => "previousResponse: $previousResponse"
                 ],
                 [
                     'role' => 'user',
