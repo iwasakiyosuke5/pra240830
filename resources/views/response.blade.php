@@ -6,6 +6,7 @@
 <head>
     <title>Search Results</title>
     <a href="{{ route('question') }}" role="button">質問ページへ</a>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>

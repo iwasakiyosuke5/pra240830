@@ -176,7 +176,7 @@ class SearchController extends Controller
                     'content' => "Question: $query\nContext: $context\nAnswer:" // クエリとコンテキストを含むメッセージ
                 ],
             ],
-            'max_tokens' => 400,
+            'max_tokens' => 600,
             'temperature' => 0.7,
         ]);
 
