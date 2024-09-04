@@ -53,10 +53,19 @@ class FollowUpController extends Controller
                     'content' => 'You are an assistant specializing in chemical data retrieval. Use the provided context to generate a response to the follow-up question.
                         Please respond in a clear and concise manner, using natural and conversational language.'
                 ],
+                // [
+                //     'role' => 'user',
+                //     'content' => "Previous Question: $previousQuestion\nPrevious Response: $previousResponse\nFollow-up Question: $followupQuestion\nContext: $context\nAnswer:"
+                // ],
+                [
+                    'role' => 'assistant',
+                    'content' => "$previousResponse"
+                ],
                 [
                     'role' => 'user',
-                    'content' => "Previous Question: $previousQuestion\nPrevious Response: $previousResponse\nFollow-up Question: $followupQuestion\nContext: $context\nAnswer:"
+                    'content' => "previousQuestion: $previousQuestion \nFollow-up Question: $followupQuestion\nContext: $context\nAnswer:"
                 ],
+                
             ],
             'max_tokens' => 300,
             'temperature' => 0.7,
