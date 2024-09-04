@@ -50,10 +50,8 @@ class FollowUpController extends Controller
             'messages' => [
                 [
                     'role' => 'system',
-                    'content' => 'You are an assistant specializing in chemical data retrieval. You need to consider the previous response and previous question when generating your answer. Use the provided context to generate a response to the follow-up question. Please respond in a clear and concise manner, using natural and conversational language.'
-
-                    // 'content' => 'You are an assistant specializing in chemical data retrieval. Use the provided context to generate a response to the follow-up question.
-                    //     Please respond in a clear and concise manner, using natural and conversational language.'
+                    'content' => 'You are an assistant specializing in chemical data retrieval. Use the provided context to generate a response to the follow-up question.
+                        Please respond in a clear and concise manner, using natural and conversational language.'
                 ],
                 // [
                 //     'role' => 'user',
