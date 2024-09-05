@@ -162,7 +162,7 @@ class SearchController extends Controller
         
                     **Steps for Condition B**:
                         1. Focus on the "user question" and the "content of the keywords" to find analysis information for similar compounds. Pay special attention to "molecular weight proximity," "functional group similarity," and "types of compounds involved."
-                        2. Once you find the analysis information, present the records in your recommended order, following the format below.:
+                        2. Once you find the analysis information, present one to three records in your recommended order, following the format below.:
                         <table>
                             <tr><th>Date</th>   <th class="pl-2">Code</th>   <th class="pl-2">Column Name</th>      <th class="pl-2">Main Peak Purity</th> <th class="pl-2">File_Path</th></tr>
                             <tr><td>{date1}</td><td class="pl-2>{code1}</td>  <td class="pl-2">{column_name1}</td>   <td class="pl-2">{purity1}%</td>       <td class="pl-2 text-xs">(File_Path_url1)</td></tr>

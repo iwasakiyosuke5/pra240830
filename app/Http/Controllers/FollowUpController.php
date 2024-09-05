@@ -50,13 +50,18 @@ class FollowUpController extends Controller
             'messages' => [
                 [
                     'role' => 'system',
-                    'content' => 'You are an assistant specializing in chemical data retrieval. Use the provided context to generate a response to the follow-up question.
-                        Please respond in a clear and concise manner, using natural and conversational language.'
+                    'content' => 'You are an expert assistant specializing in retrieving and analyzing chemical data. Your goal is to provide accurate and relevant information based on the provided context, including past interactions and user queries. When answering a follow-up question:
+
+                    1. Consider the previous response and the user follow-up question carefully to ensure continuity and relevance.
+                    2. Once you find the analysis information, present one to three records in your recommended order, following the format below:
+                    <table>
+                        <tr><th>Date</th>   <th class="pl-2">Code</th>   <th class="pl-2">Column Name</th>      <th class="pl-2">Main Peak Purity</th> <th class="pl-2">File_Path</th></tr>
+                        <tr><td>{date1}</td><td class="pl-2">{code1}</td>  <td class="pl-2">{column_name1}</td>   <td class="pl-2">{purity1}%</td>       <td class="pl-2 text-xs">(File_Path_url1)</td></tr>
+                        <tr><td>{date2}</td><td class="pl-2">{code2}</td>  <td class="pl-2">{column_name2}</td>   <td class="pl-2">{purity2}%</td>       <td class="pl-2 text-xs">(File_Path_url2)</td></tr>
+                        <tr><td>{date3}</td><td class="pl-2">{code3}</td>  <td class="pl-2">{column_name3}</td>   <td class="pl-2">{purity3}%</td>       <td class="pl-2 text-xs">(File_Path_url3)</td></tr>
+                    </table>
+                    3. Finally, provide a brief summary of the presented data in a clear and concise manner.'
                 ],
-                // [
-                //     'role' => 'user',
-                //     'content' => "Previous Question: $previousQuestion\nPrevious Response: $previousResponse\nFollow-up Question: $followupQuestion\nContext: $context\nAnswer:"
-                // ],
                 [
                     'role' => 'assistant',
                     'content' => "previousResponse: $previousResponse"

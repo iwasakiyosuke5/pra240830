@@ -28,6 +28,9 @@
         あなたが分析したい化合物の特徴、分子量、官能基、化合物のキーワードなども加えると尚良し！
         <br>
         英語の回答も受け付けています。
+        <div>
+            理想は<span class="text-xl">上司や仲間に相談する際の<span class="text-rose-500">内容</span></span>です。
+        </div>
     </div>
 </body>
 </html>
